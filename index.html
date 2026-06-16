@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moore Consulting Technology · סל פתרונות טכנולוגיים</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0b1e3d;
+      --navy-dark:   #071529;
+      --teal:        #35bbc8;
+      --teal-dark:   #27a0ac;
+      --accent2:     #00c49a;
+      --accent3:     #f4683c;
+      --bg:          #ffffff;
+      --bg-alt:      #f5f7fa;
+      --text:        #0d1b2a;
+      --text-muted:  #5e6f82;
+      --card-bg:     #ffffff;
+      --border:      #dce3ed;
+      --shadow:      0 2px 16px rgba(11,30,61,0.08);
+      --shadow-lg:   0 8px 40px rgba(11,30,61,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      box-shadow: 0 1px 12px rgba(11,30,61,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-svg { flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-text span:first-child { font-size: 18px; font-weight: 900; color: var(--navy); letter-spacing: 1.5px; }
+    .nav-logo-text span:last-child  { font-size: 9px; font-weight: 500; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--navy); color: #fff;
+      font-size: 13px; font-weight: 700; padding: 9px 22px;
+      border-radius: 6px; text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--teal); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #0f2a50 100%);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 120px 8% 56px;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    /* dot-grid background */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(53,187,200,0.18) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 50%, rgba(11,30,61,0) 0%, rgba(7,21,41,0.6) 100%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 20px; opacity: .9; display: block;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 900; line-height: 1.0;
+      color: #fff; margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub1 {
+      font-size: clamp(17px, 1.8vw, 22px); font-weight: 600;
+      color: rgba(255,255,255,.85); margin-bottom: 10px;
+    }
+    .hero-sub2 {
+      font-size: 15px; color: rgba(255,255,255,.5);
+      margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--teal); color: var(--navy);
+      font-size: 15px; font-weight: 700; padding: 14px 32px;
+      border-radius: 8px; text-decoration: none; transition: all .25s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #50cfd9; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85);
+      font-size: 15px; font-weight: 600; padding: 14px 32px;
+      border-radius: 8px; text-decoration: none; transition: all .25s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+
+
+    /* ─── scroll indicator ─── */
+    .scroll-indicator {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.35); font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; z-index: 1;
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid rgba(255,255,255,.35);
+      border-bottom: 2px solid rgba(255,255,255,.35);
+      transform: rotate(45deg);
+      animation: scroll-bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: .35; }
+      50%       { transform: rotate(45deg) translateY(5px); opacity: .8; }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 8%; }
+    .section-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 16px; display: block;
+    }
+    h2.section-title {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: var(--navy);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--text-muted); max-width: 600px; line-height: 1.7;
+      margin-bottom: 60px;
+    }
+
+    /* ─── WHY NOW ─── */
+    .why-now { background: var(--bg-alt); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px 28px;
+      position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: var(--shadow);
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .why-card::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 60%; height: 3px;
+    }
+    .why-card:nth-child(1)::before { background: var(--teal); }
+    .why-card:nth-child(2)::before { background: var(--accent2); }
+    .why-card:nth-child(3)::before { background: var(--accent3); }
+    .why-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; margin-bottom: 20px;
+    }
+    .why-card:nth-child(1) .why-num { background: rgba(53,187,200,.12); color: var(--teal); }
+    .why-card:nth-child(2) .why-num { background: rgba(0,196,154,.12); color: var(--accent2); }
+    .why-card:nth-child(3) .why-num { background: rgba(244,104,60,.12); color: var(--accent3); }
+    .why-card h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ─── SOLUTIONS ACCORDION ─── */
+    .solutions-accordion {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; box-shadow: var(--shadow);
+    }
+    .sol-item {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      transition: background .2s;
+    }
+    .sol-item:last-child { border-bottom: none; }
+    .sol-item.open { background: var(--bg); }
+
+    .sol-header {
+      display: flex; align-items: center; gap: 20px;
+      padding: 22px 32px; cursor: pointer;
+      transition: background .2s;
+      user-select: none;
+    }
+    .sol-header:hover { background: var(--bg-alt); }
+    .sol-item.open .sol-header { background: var(--bg-alt); }
+
+    .sol-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: var(--teal); flex-shrink: 0; width: 24px;
+    }
+    .sol-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(53,187,200,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+      transition: background .2s;
+    }
+    .sol-item.open .sol-icon { background: rgba(53,187,200,.18); }
+
+    .sol-header-text { flex: 1; }
+    .sol-header-text h3 {
+      font-size: 17px; font-weight: 700; color: var(--navy); margin: 0;
+    }
+    .sol-header-text .en-label {
+      font-size: 11px; font-weight: 500; color: var(--text-muted);
+      letter-spacing: 1px; display: block; margin-top: 2px;
+    }
+    .sol-header-tags { display: flex; gap: 8px; flex-shrink: 0; }
+    .sol-tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 20px; background: rgba(53,187,200,.1); color: var(--teal-dark);
+    }
+    .sol-chevron {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--border); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: transform .3s, background .2s;
+      font-size: 12px; color: var(--text-muted);
+    }
+    .sol-item.open .sol-chevron {
+      transform: rotate(180deg);
+      background: rgba(53,187,200,.15); color: var(--teal-dark);
+    }
+
+    .sol-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s cubic-bezier(0.4,0,0.2,1), padding .3s;
+      padding: 0 32px;
+    }
+    .sol-item.open .sol-body { max-height: 400px; padding: 0 32px 28px; }
+
+    .sol-body-inner {
+      border-top: 1px solid var(--border); padding-top: 24px;
+      display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;
+    }
+    .sol-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+    .sol-divider {
+      width: 32px; height: 2px; border-radius: 2px; margin-bottom: 14px;
+    }
+    .sol-body-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .sol-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--teal-dark);
+      text-decoration: none; border: 1.5px solid var(--teal);
+      padding: 9px 18px; border-radius: 8px; white-space: nowrap;
+      transition: background .2s, color .2s;
+      align-self: start; margin-top: 4px;
+    }
+    .sol-cta:hover { background: var(--teal); color: var(--navy); }
+
+    /* ─── AI MATURITY ─── */
+    .maturity { background: var(--navy); }
+    .maturity-track {
+      display: flex; gap: 0; margin-top: 48px; overflow-x: auto;
+      padding-bottom: 16px;
+    }
+    /* RTL chevrons: tip points LEFT (direction of progress in Hebrew) */
+    .maturity-step {
+      flex: 1; min-width: 160px; padding: 28px 28px 24px 36px;
+      position: relative;
+      clip-path: polygon(100% 0, 20px 0, 0 50%, 20px 100%, 100% 100%, calc(100% - 20px) 50%);
+    }
+    /* First child in DOM = step 01 = rightmost in RTL = no right notch */
+    .maturity-step:first-child {
+      clip-path: polygon(100% 0, 20px 0, 0 50%, 20px 100%, 100% 100%);
+    }
+    /* Last child in DOM = step 05 = leftmost in RTL = no left tip, flat left */
+    .maturity-step:last-child {
+      clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, calc(100% - 20px) 50%);
+    }
+    .maturity-step:nth-child(1) { background: #35bbc8; }
+    .maturity-step:nth-child(2) { background: #00b894; }
+    .maturity-step:nth-child(3) { background: #3a86e8; }
+    .maturity-step:nth-child(4) { background: #f4a025; }
+    .maturity-step:nth-child(5) { background: #9b59b6; }
+    .maturity-num { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.7); letter-spacing: 1px; }
+    .maturity-title { font-size: 16px; font-weight: 800; color: #fff; margin: 4px 0 8px; }
+    .maturity-desc { font-size: 12px; color: rgba(255,255,255,.8); line-height: 1.5; }
+
+    /* ─── VERTICALS ─── */
+    .verticals-grid {
+      columns: 2;
+      column-gap: 24px;
+    }
+    @media (max-width: 768px) { .verticals-grid { columns: 1; } }
+    .vertical-card {
+      break-inside: avoid;
+      margin-bottom: 24px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow .25s;
+    }
+    .vertical-card.open { box-shadow: var(--shadow-lg); }
+    .vertical-header {
+      padding: 22px 24px;
+      display: flex; align-items: center; gap: 12px;
+      cursor: pointer; transition: background .2s; user-select: none;
+    }
+    .vertical-header:hover { background: var(--bg-alt); }
+    .vertical-card.open .vertical-header { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+    .vert-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .vert-header-text { flex: 1; }
+    .vertical-header h3 { font-size: 18px; font-weight: 700; color: var(--navy); }
+    .vertical-header .en-sub { font-size: 12px; color: var(--text-muted); }
+    .vert-chevron {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--border); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 11px; color: var(--text-muted);
+      transition: transform .3s, background .2s;
+    }
+    .vertical-card.open .vert-chevron { transform: rotate(180deg); background: rgba(53,187,200,.15); color: var(--teal-dark); }
+
+    .vert-collapsible {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .vertical-card.open .vert-collapsible { max-height: 600px; }
+
+    .vert-body { padding: 20px 28px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .vert-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .vert-col.challenges h4 { color: #e05252; }
+    .vert-col.solutions h4 { color: var(--accent2); }
+    .vert-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .vert-col li { font-size: 13px; color: var(--text-muted); line-height: 1.5; display: flex; gap: 8px; }
+    .vert-col li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .vert-col.challenges li::before { background: #e05252; }
+    .vert-col.solutions li::before { background: var(--accent2); }
+    .vert-outcome {
+      margin: 0 28px 24px;
+      background: rgba(0,196,154,.07);
+      border: 1px solid rgba(0,196,154,.2);
+      border-radius: 10px; padding: 14px 16px;
+      font-size: 13px; color: #00956e; line-height: 1.6;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--navy); }
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .contact-info h2 { margin-bottom: 20px; color: #fff; }
+    .contact-info p { color: rgba(255,255,255,.6); line-height: 1.7; margin-bottom: 32px; }
+    .contact .section-tag { color: var(--teal); }
+    .contact-detail {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+    }
+    .contact-detail .icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(53,187,200,.15); display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .contact-detail span { color: rgba(255,255,255,.6); font-size: 15px; }
+    .contact-detail a { color: var(--teal); text-decoration: none; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%; padding: 14px 18px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px; color: #fff; font-family: 'Heebo', sans-serif;
+      font-size: 14px; outline: none; transition: border-color .2s;
+      direction: rtl;
+    }
+    .contact-form select option { background: var(--navy); color: #fff; }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--teal); }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,.35); }
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form button {
+      background: var(--teal); color: var(--navy);
+      font-size: 15px; font-weight: 700; padding: 14px 32px;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'Heebo', sans-serif; transition: background .2s, transform .2s;
+    }
+    .contact-form button:hover { background: #50cfd9; transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 48px 8% 32px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: 16px; max-width: 260px; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; letter-spacing: .5px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: rgba(255,255,255,.35);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      nav .nav-links, nav .nav-cta { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .maturity-track { flex-direction: column; }
+      .maturity-step { clip-path: none !important; margin-bottom: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Moore Consulting M logo -->
+    <svg class="nav-logo-svg" width="52" height="42" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Teal left outer triangle -->
+      <polygon points="0,42 13,42 26,2" fill="#35BBC8"/>
+      <!-- Black left inner triangle -->
+      <polygon points="13,42 26,2 19.5,42" fill="#0d1b2a"/>
+      <!-- Teal right outer triangle -->
+      <polygon points="26,2 39,42 52,42" fill="#35BBC8"/>
+      <!-- Black right inner triangle -->
+      <polygon points="26,2 32.5,42 39,42" fill="#0d1b2a"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>MOORE</span>
+      <span>CONSULTING · TECHNOLOGY</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">למה עכשיו</a></li>
+    <li><a href="#solutions">פתרונות</a></li>
+    <li><a href="#verticals">תעשיות</a></li>
+    <li><a href="#contact">צור קשר</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">קבעו פגישה</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Moore Consulting · Technology</p>
+    <h1>Technology<br/><em>Solutions</em></h1>
+    <p class="hero-sub1">ייעול תהליכים · אוטומציה · חדשנות מבוססת AI</p>
+    <p class="hero-sub2">מאבחון נקודתי ועד הטמעה מקצה לקצה</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#maturity">לסל הפתרונות</a>
+      <a class="btn-outline" href="#contact">קבל הצעה</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ─── WHY NOW ─── -->
+<section class="why-now" id="why">
+  <span class="section-tag">למה עכשיו?</span>
+  <h2 class="section-title">כבר לא יתרון, אלא הכרח —<br/>ארגונים שלא ממנפים את הכוח של הטכנולוגיה ישארו מאחור</h2>
+  <p class="section-sub">Moore Consulting מציעה סל פתרונות סדור — מאבחון נקודתי ועד הטמעה מקצה לקצה.</p>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">1</div>
+      <h3>הטמעה פשוטה, תוצאות מיידיות</h3>
+      <p>פתרונות AI מודרניים מתחברים ישירות ובקלות לדאטה הקיים בארגון (מערכות CRM, ERP ואקסלים), ומאפשרים להפיק ערך עסקי ולחלץ מידע חסום תוך ימים ספורים.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">2</div>
+      <h3>אוטומציית AI: חיסול המשימות המונוטוניות</h3>
+      <p>היום קל מאי פעם לרתום כלי AI כדי לשחרר את הצוותים שלכם ממשימות מונוטוניות, הזנות ידניות ופעולות copy-paste מתישות. האוטומציה החכמה מונעת טעויות אנוש יקרות, ומפנה את המשאב האנושי לעבודה שמייצרת ערך אמיתי.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">3</div>
+      <h3>מירוץ ה-AI: חלון ההזדמנויות נסגר מהר</h3>
+      <p>כלי ה-AI הנוכחיים בשלים, זמינים ובעלויות נמוכות מאי פעם. הפער התחרותי בשוק נסגר כיום בחודשים, לא בשנים. ארגון שלא ינצל את נגישות ה-AI עכשיו כדי לייעל את התהליכים שלו, יגלה שהמתחרים פתחו פער בלתי ניתן לגישור.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AI MATURITY ─── -->
+<section class="maturity" id="maturity">
+  <h2 class="section-title" style="color:#fff;font-size:clamp(40px,6vw,72px);letter-spacing:-1px;margin-bottom:12px">AI Maturity</h2>
+  <p class="section-sub" style="font-size:clamp(20px,2.5vw,28px);color:rgba(255,255,255,.75);font-weight:600;margin-bottom:48px">איפה הארגון שלך נמצא היום?</p>
+
+  <div class="maturity-track">
+    <div class="maturity-step reveal">
+      <div class="maturity-num">01</div>
+      <div class="maturity-title">Awareness</div>
+      <div class="maturity-desc">זיהוי הזדמנויות והבנת הפוטנציאל</div>
+    </div>
+    <div class="maturity-step reveal">
+      <div class="maturity-num">02</div>
+      <div class="maturity-title">Experimentation</div>
+      <div class="maturity-desc">הרצת פיילוטים ופרויקטי הוכחת תכנות</div>
+    </div>
+    <div class="maturity-step reveal">
+      <div class="maturity-num">03</div>
+      <div class="maturity-title">Adoption</div>
+      <div class="maturity-desc">שילוב AI בתהליכי העסק המרכזיים</div>
+    </div>
+    <div class="maturity-step reveal">
+      <div class="maturity-num">04</div>
+      <div class="maturity-title">Scaling</div>
+      <div class="maturity-desc">הרחבה לכלל הצוותים עם ממשל נתונים</div>
+    </div>
+    <div class="maturity-step reveal">
+      <div class="maturity-num">05</div>
+      <div class="maturity-title">AI-Native</div>
+      <div class="maturity-desc">AI כגרעין האסטרטגי של העסק</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOLUTIONS ─── -->
+<section id="solutions" style="background:var(--bg-alt)">
+  <h2 class="section-title">פתרונות —<br/>מאבחון ועד הטמעה</h2>
+  <p class="section-sub">כל מסלול עומד בפני עצמו או משתלב עם האחרים ליצירת מערכת טכנולוגית שלמה.</p>
+
+  <div class="solutions-accordion">
+
+    <div class="sol-item open">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">01</span>
+        <div class="sol-icon">🔍</div>
+        <div class="sol-header-text">
+          <h3>אבחון וטיפול בנזילות נתונים</h3>
+          <span class="en-label">Data Flow Diagnostic</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag">Data Map</span>
+          <span class="sol-tag">איכות דאטה</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:var(--teal)"></div>
+            <p>אבחון מקיף של כל נקודות המשק בהן מועברים נתונים ידנית — ייצוא מ-Priority, הזנה ידנית לאקסל, העתקות בין מחלקות. התוצר: מפת זרימה ויזואלית (Data Map) וסט המלצות לשיפור כולל כימות ההפסד הכספי.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag">כימות הפסדים</span>
+              <span class="sol-tag">Data Map</span>
+              <span class="sol-tag">איכות דאטה</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">02</span>
+        <div class="sol-icon">📊</div>
+        <div class="sol-header-text">
+          <h3>פלטפורמת דיווח אחודה</h3>
+          <span class="en-label">Integrated Reporting</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Executive Snapshot</span>
+          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Enterprise BI</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:#00956e"></div>
+            <p>חיבור מערכות תפעוליות · ERP · אקסל ל-Data Warehouse עם ויזואליזציה מלאה. שני מסלולים: Executive Snapshot לחברות קטנות/בינוניות, ו-Enterprise BI עם Power BI / Tableau לחברות גדולות.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Executive Snapshot</span>
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Enterprise BI</span>
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">KPIs</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">03</span>
+        <div class="sol-icon">🤖</div>
+        <div class="sol-header-text">
+          <h3>סוכני AI לאוטומציית Back Office</h3>
+          <span class="en-label">AI Agents</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">קליטת הזמנות</span>
+          <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">עיבוד חשבוניות</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:#d4522a"></div>
+            <p>החלפת משימות מונוטוניות ורוחביות בסוכנים שלומדים את תהליכי הארגון ומבצעים אותם באופן עצמאי: קליטת הזמנות, השוואת הצעות מספקים, רישומי יומן, עיבוד חשבוניות, ומענה ללקוחות.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">קליטת הזמנות</span>
+              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">עיבוד חשבוניות</span>
+              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">מענה לקוחות</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">04</span>
+        <div class="sol-icon">🧠</div>
+        <div class="sol-header-text">
+          <h3>ניהול ידע ושימור ה-DNA הארגוני</h3>
+          <span class="en-label">Knowledge &amp; DNA</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">Wiki חכם</span>
+          <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">חיפוש שפתי</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:#9b59b6"></div>
+            <p>מיפוי ותיעוד ידע, נהלים, חוזים והיסטוריה ארגונית. כלי AI לשליפה: חיפוש שפתי על כל המידע הארגוני. ספריית ידע דינמית — Wiki חי שמתעדכן ומתרחב באופן שוטף ומשתלב עם כלי BI.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">Wiki חכם</span>
+              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">חיפוש שפתי</span>
+              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">שילוב BI</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">05</span>
+        <div class="sol-icon">⚡</div>
+        <div class="sol-header-text">
+          <h3>90 יום של אוטומציה</h3>
+          <span class="en-label">The 90-Day Accelerator</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">Quick Wins</span>
+          <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ROI מדיד</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:#f9a825"></div>
+            <p>מאבחון רוחבי ל-Quick Wins מהירים ולהטמעה מלאה תוך 90 יום. מיפוי כלל התהליכים → בחירת 1–4 מוקדים → ביצוע מקצה לקצה → מדידת השפעה כמותית והוכחת תכנות ל-ROI מיידי.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">Quick Wins</span>
+              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ROI מדיד</span>
+              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ספרינט קצר</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">06</span>
+        <div class="sol-icon">🎯</div>
+        <div class="sol-header-text">
+          <h3>הטמעת AI בארגון</h3>
+          <span class="en-label">AI Adoption</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag">הכשרה מותאמת</span>
+          <span class="sol-tag">ליווי שוטף</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:var(--teal)"></div>
+            <p>לא עוצרים בסדנה — מלווים מאבחון ועד אימוץ בפועל בעבודה היומיומית. מיפוי ואבחון → הכשרה מותאמת → ליווי ואימוץ בשטח. רוב הגופים מסתיימים בסדנה — אנחנו מלווים עד שה-AI הופך לכלי עבודה אמיתי.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag">הכשרה מותאמת</span>
+              <span class="sol-tag">ליווי שוטף</span>
+              <span class="sol-tag">מדידת אימוץ</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-item">
+      <div class="sol-header" onclick="toggleSol(this)">
+        <span class="sol-num">07</span>
+        <div class="sol-icon">⚙️</div>
+        <div class="sol-header-text">
+          <h3>מודלים חכמים לתעשייה ולתפעול</h3>
+          <span class="en-label">ML &amp; Industry</span>
+        </div>
+        <div class="sol-header-tags">
+          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">ML מותאם</span>
+          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">חיזוי תקלות</span>
+        </div>
+        <div class="sol-chevron">▾</div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-body-inner">
+          <div>
+            <div class="sol-divider" style="background:#00956e"></div>
+            <p>מודל מאומן על הדאטה שלכם, שמשתלב בקו הייצור ובתהליך — לא פתרון מדף גנרי. איסוף וחיבור דאטה → אימון מודל תפור → שילוב בקו וניטור עם שיפור מתמיד.</p>
+            <div class="sol-body-tags">
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">ML מותאם</span>
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">חיזוי תקלות</span>
+              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">אופטימיזציית קו</span>
+            </div>
+          </div>
+          <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── VERTICALS ─── -->
+<section id="verticals" style="background:var(--bg-alt)">
+  <h2 class="section-title">פתרונות עבור<br/>כל תעשייה</h2>
+  <p class="section-sub">לכל תעשייה יש אתגרים ייחודיים. אנחנו מתאימים את הפתרון לארגון שלך.</p>
+
+  <div class="verticals-grid">
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(53,187,200,.1);color:var(--teal-dark)">💰</div>
+        <div class="vert-header-text">
+          <h3>מחלקה פיננסית</h3>
+          <div class="en-sub">Finance</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>סגירת חודש איטית</span></li><li><span>דוחות חוזרים</span></li><li><span>זיהוי חריגות מאוחר</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>אוטומציות חכמות</span></li><li><span>סוכן לסגירת חודש</span></li><li><span>מודל ML לחיזוי תזרים</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">פחות עבודה ידנית, סגירת חודש מהירה ומדויקת יותר ושקיפות מלאה על המצב הפיננסי.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(0,196,154,.1);color:#00956e">📦</div>
+        <div class="vert-header-text">
+          <h3>מחסן ולוגיסטיקה</h3>
+          <div class="en-sub">Logistics</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>ליקוט איטי ולא יעיל</span></li><li><span>שיעור טעויות גבוה</span></li><li><span>תלות בעובדים ותיקים</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מערכת ליקוט ייעודית חכמה</span></li><li><span>אופטימיזציית מסלולים</span></li><li><span>אימות בסריקת ברקוד</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">ליקוט מהיר ומדויק יותר, ירידה חדה בטעויות ובהחזרות וקיצור משמעותי בזמן הכשרת עובדים חדשים.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(249,168,37,.1);color:#c47f00">🏭</div>
+        <div class="vert-header-text">
+          <h3>קו ייצור</h3>
+          <div class="en-sub">Manufacturing</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>השבתות לא צפויות</span></li><li><span>פסולת גבוהה</span></li><li><span>תחזוקה תגובתית</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>חיזוי תקלות ML</span></li><li><span>אופטימיזציית קו בזמן אמת</span></li><li><span>בקרת איכות חזותית</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">צמצום השבתות, ירידה בפסולת ועלייה בתפוקה — עם מודל שמשתפר עם כל מחזור.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(244,104,60,.1);color:#d4522a">📢</div>
+        <div class="vert-header-text">
+          <h3>מכירות ושיווק</h3>
+          <div class="en-sub">Sales &amp; Marketing</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>לידים ללא תיעדוף</span></li><li><span>הצעות מחיר איטיות</span></li><li><span>תוכן בקצב נמוך</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>תיעדוף לידים בזמן אמת</span></li><li><span>הצעות מחיר אוטומטיות</span></li><li><span>מחולל תוכן שיווקי</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">התמקדות בלידים החמים, מחזורי מכירה קצרים יותר ותפוקת תוכן גבוהה יותר.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(155,89,182,.1);color:#7e3ecc">📋</div>
+        <div class="vert-header-text">
+          <h3>ניהול פרויקטים</h3>
+          <div class="en-sub">PMO Agent</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>סטטוסים מפוזרים</span></li><li><span>עיכובים מתגלים מאוחר</span></li><li><span>דיווח גוזל זמן</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מעקב משימות חכם</span></li><li><span>התרעות עיכוב</span></li><li><span>דוחות אוטומטיים</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">שקיפות מלאה על מצב הפרויקט, התראות מוקדמות ופחות זמן על איסוף סטטוסים.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(0,188,212,.1);color:#0097a7">👥</div>
+        <div class="vert-header-text">
+          <h3>משאבי אנוש</h3>
+          <div class="en-sub">HR</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>כמות מועמדים גדולה</span></li><li><span>חוויית מועמד חלשה</span></li><li><span>קליטה לא אחידה</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>סינון קו"ח חכם</span></li><li><span>מענה למועמדים</span></li><li><span>עוזר קליטה</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">גיוס מהיר יותר, חוויית מועמד טובה יותר וקליטה אחידה שמשחררת את צוות ה-HR.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(53,187,200,.1);color:var(--teal-dark)">🎧</div>
+        <div class="vert-header-text">
+          <h3>שירות לקוחות</h3>
+          <div class="en-sub">Support</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>עומס פניות גבוה</span></li><li><span>זמני המתנה ארוכים</span></li><li><span>שאלות חוזרות</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מענה אוטומטי</span></li><li><span>סיווג וניתוב חכם</span></li><li><span>תשובות מוצעות לנציג</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">קיצור זמני מענה, ירידה בעומס על הצוות ופניות מורכבות שמגיעות מהר לאדם הנכון.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card reveal">
+      <div class="vertical-header" onclick="toggleVert(this)">
+        <div class="vert-icon" style="background:rgba(0,196,154,.1);color:#00956e">🏢</div>
+        <div class="vert-header-text">
+          <h3>חוצה-ארגון</h3>
+          <div class="en-sub">Enterprise-Wide</div>
+        </div>
+        <div class="vert-chevron">▾</div>
+      </div>
+      <div class="vert-collapsible">
+        <div class="vert-body">
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>ידע מפוזר</span></li><li><span>חיפוש איטי</span></li><li><span>אובדן ידע ארגוני</span></li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>סוכן עוזר ידע ארגוני</span></li><li><span>חיפוש סמנטי</span></li><li><span>תיעוד אוטומטי</span></li></ul></div>
+        </div>
+        <div class="vert-outcome">גישה מהירה לידע לכל עובד, קבלת החלטות מהירה יותר ושימור ידע ארגוני.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <span class="section-tag">צרו קשר</span>
+      <h2 class="section-title">נדבר על<br/>הארגון שלכם</h2>
+      <p>המומחים שלנו ישמחו לאבחן את הנקודות שבהן תוכלו להשיג ערך מהיר — ללא התחייבות.</p>
+      <div class="contact-detail">
+        <div class="icon">📧</div>
+        <div><a href="mailto:info@moore-mc.com">info@moore-mc.com</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">🌐</div>
+        <div><a href="https://www.moore-mc.com" target="_blank">www.moore-mc.com</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">💼</div>
+        <div><span>Moore Management Consulting</span></div>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="return false;">
+      <div class="form-row">
+        <input type="text" placeholder="שם מלא" />
+        <input type="text" placeholder="חברה" />
+      </div>
+      <div class="form-row">
+        <input type="email" placeholder="אימייל" />
+        <input type="tel" placeholder="טלפון" />
+      </div>
+      <select>
+        <option value="" disabled selected>תחום עניין</option>
+        <option>Data Flow Diagnostic</option>
+        <option>פלטפורמת דיווח אחודה</option>
+        <option>סוכני AI — Back Office</option>
+        <option>ניהול ידע ארגוני</option>
+        <option>90-Day Accelerator</option>
+        <option>הטמעת AI בארגון</option>
+        <option>מודלים חכמים ML</option>
+      </select>
+      <textarea placeholder="ספרו לנו על הארגון והצרכים שלכם..."></textarea>
+      <button type="submit">שלחו הודעה ←</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:0">
+        <svg class="nav-logo-svg" width="52" height="42" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,42 13,42 26,2" fill="#35BBC8"/>
+          <polygon points="13,42 26,2 19.5,42" fill="rgba(255,255,255,0.15)"/>
+          <polygon points="26,2 39,42 52,42" fill="#35BBC8"/>
+          <polygon points="26,2 32.5,42 39,42" fill="rgba(255,255,255,0.15)"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span style="color:#fff">MOORE</span>
+          <span>CONSULTING · TECHNOLOGY</span>
+        </div>
+      </div>
+      <p>פתרונות טכנולוגיים מבוססי AI לייעול תהליכים, אוטומציה וחדשנות ארגונית — מאבחון ועד הטמעה.</p>
+    </div>
+    <div class="footer-col">
+      <h4>פתרונות</h4>
+      <ul>
+        <li><a href="#solutions">Data Flow Diagnostic</a></li>
+        <li><a href="#solutions">פלטפורמת דיווח</a></li>
+        <li><a href="#solutions">סוכני AI</a></li>
+        <li><a href="#solutions">ניהול ידע</a></li>
+        <li><a href="#solutions">90-Day Accelerator</a></li>
+        <li><a href="#solutions">הטמעת AI</a></li>
+        <li><a href="#solutions">מודלים חכמים ML</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>תעשיות</h4>
+      <ul>
+        <li><a href="#verticals">מחלקה פיננסית</a></li>
+        <li><a href="#verticals">מחסן ולוגיסטיקה</a></li>
+        <li><a href="#verticals">קו ייצור</a></li>
+        <li><a href="#verticals">מכירות ושיווק</a></li>
+        <li><a href="#verticals">ניהול פרויקטים</a></li>
+        <li><a href="#verticals">שירות לקוחות</a></li>
+        <li><a href="#verticals">משאבי אנוש</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Moore Consulting</h4>
+      <ul>
+        <li><a href="https://www.moore-mc.com/about/">אודות</a></li>
+        <li><a href="https://www.moore-mc.com/leadership/">מנהיגות</a></li>
+        <li><a href="https://www.moore-mc.com/projects-2/">פרויקטים</a></li>
+        <li><a href="https://www.moore-mc.com/contact-us/">צור קשר</a></li>
+        <li><a href="https://www.linkedin.com/company/moore-management-consulting/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Moore Management Consulting. All rights reserved.</span>
+    <span>סל פתרונות טכנולוגיים · AI · Automation · Innovation</span>
+  </div>
+</footer>
+
+<script>
+  // Vertical cards toggle (independent — multiple can be open)
+  function toggleVert(header) {
+    header.closest('.vertical-card').classList.toggle('open');
+  }
+
+  // Accordion
+  function toggleSol(header) {
+    const item = header.closest('.sol-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.sol-item.open').forEach(i => i.classList.remove('open'));
+    // Open clicked (unless it was already open)
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--teal)' : '';
+    });
+  });
+
+  // Form submit feedback
+  document.querySelector('.contact-form button').addEventListener('click', function() {
+    this.textContent = '✓ ההודעה נשלחה!';
+    this.style.background = 'var(--accent2)';
+    setTimeout(() => {
+      this.textContent = 'שלחו הודעה ←';
+      this.style.background = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
