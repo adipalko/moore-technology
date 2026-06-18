@@ -5,31 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moore Consulting Technology · סל פתרונות טכנולוגיים</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:        #0b1e3d;
-      --navy-dark:   #071529;
-      --teal:        #35bbc8;
-      --teal-dark:   #27a0ac;
-      --accent2:     #00c49a;
-      --accent3:     #f4683c;
-      --bg:          #ffffff;
-      --bg-alt:      #f5f7fa;
-      --text:        #0d1b2a;
-      --text-muted:  #5e6f82;
-      --card-bg:     #ffffff;
-      --border:      #dce3ed;
-      --shadow:      0 2px 16px rgba(11,30,61,0.08);
-      --shadow-lg:   0 8px 40px rgba(11,30,61,0.12);
+      --dark:       #08090d;
+      --dark-2:     #0f1117;
+      --dark-3:     #161b27;
+      --navy:       #0b1e3d;
+      --teal:       #06b6d4;
+      --teal-light: #22d3ee;
+      --teal-dark:  #0891b2;
+      --purple:     #6366f1;
+      --green:      #10b981;
+      --amber:      #f59e0b;
+      --coral:      #f97316;
+      --bg:         #ffffff;
+      --bg-alt:     #f8fafc;
+      --text:       #0f172a;
+      --text-muted: #64748b;
+      --border:     #e2e8f0;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow:     0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg:  0 12px 48px rgba(0,0,0,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Rubik', sans-serif;
       background: var(--bg);
       color: var(--text);
       direction: rtl;
@@ -39,408 +44,384 @@
     /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       padding: 0 5%;
       display: flex; align-items: center; justify-content: space-between;
-      height: 72px;
-      box-shadow: 0 1px 12px rgba(11,30,61,0.06);
+      height: 68px;
+      transition: box-shadow .3s;
     }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
     .nav-logo {
       display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
+      text-decoration: none; flex-shrink: 0;
     }
-    .nav-logo-svg { flex-shrink: 0; }
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-text span:first-child { font-size: 18px; font-weight: 900; color: var(--navy); letter-spacing: 1.5px; }
-    .nav-logo-text span:last-child  { font-size: 9px; font-weight: 500; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
       color: var(--text-muted); font-size: 14px; font-weight: 500;
       text-decoration: none; transition: color .2s;
     }
-    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover { color: var(--text); }
     .nav-cta {
-      background: var(--navy); color: #fff;
-      font-size: 13px; font-weight: 700; padding: 9px 22px;
-      border-radius: 6px; text-decoration: none; transition: background .2s;
+      background: var(--dark); color: #fff;
+      font-size: 13px; font-weight: 600; padding: 9px 20px;
+      border-radius: 8px; text-decoration: none;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--teal); }
+    .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
     /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #0f2a50 100%);
+      background: var(--dark);
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      padding: 120px 8% 56px;
+      padding: 130px 8% 80px;
       position: relative; overflow: hidden;
       text-align: center;
     }
-    /* dot-grid background */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(53,187,200,0.18) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-    }
-    .hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 55% 55% at 50% 50%, rgba(11,30,61,0) 0%, rgba(7,21,41,0.6) 100%);
+    .hero-glow {
+      position: absolute;
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(6,182,212,0.15) 0%, rgba(99,102,241,0.08) 50%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 20px; opacity: .9; display: block;
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
     }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.25);
+      color: var(--teal-light); font-size: 12px; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 32px;
+      letter-spacing: .5px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: inline-block; }
     .hero h1 {
-      font-size: clamp(48px, 7vw, 96px);
+      font-size: clamp(44px, 7vw, 88px);
       font-weight: 900; line-height: 1.0;
       color: #fff; margin-bottom: 24px;
+      letter-spacing: -2px;
     }
-    .hero h1 em { font-style: normal; color: var(--teal); }
-    .hero-sub1 {
-      font-size: clamp(17px, 1.8vw, 22px); font-weight: 600;
-      color: rgba(255,255,255,.85); margin-bottom: 10px;
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--teal-light), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .hero-sub2 {
-      font-size: 15px; color: rgba(255,255,255,.5);
-      margin-bottom: 48px;
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); font-weight: 400;
+      color: rgba(255,255,255,.55); margin-bottom: 8px; line-height: 1.6;
     }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .hero-sub strong { color: rgba(255,255,255,.8); font-weight: 600; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
     .btn-primary {
-      background: var(--teal); color: var(--navy);
-      font-size: 15px; font-weight: 700; padding: 14px 32px;
-      border-radius: 8px; text-decoration: none; transition: all .25s;
+      background: var(--teal); color: var(--dark);
+      font-size: 15px; font-weight: 700; padding: 14px 28px;
+      border-radius: 10px; text-decoration: none; transition: all .25s;
       display: inline-block;
     }
-    .btn-primary:hover { background: #50cfd9; transform: translateY(-2px); }
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85);
-      font-size: 15px; font-weight: 600; padding: 14px 32px;
-      border-radius: 8px; text-decoration: none; transition: all .25s;
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,182,212,0.35); }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7);
+      font-size: 15px; font-weight: 500; padding: 14px 28px;
+      border-radius: 10px; text-decoration: none; transition: all .25s;
       display: inline-block;
     }
-    .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.35); color: #fff; transform: translateY(-2px); }
 
-
-
-    /* ─── scroll indicator ─── */
+    /* Scroll indicator */
     .scroll-indicator {
       position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,.35); font-size: 11px; letter-spacing: 2px;
-      text-transform: uppercase; font-weight: 600; z-index: 1;
+      z-index: 1; animation: chevron-bounce 1.8s ease-in-out infinite;
     }
-    .scroll-arrow {
-      width: 20px; height: 20px;
-      border-right: 2px solid rgba(255,255,255,.35);
-      border-bottom: 2px solid rgba(255,255,255,.35);
-      transform: rotate(45deg);
-      animation: scroll-bounce 1.6s ease-in-out infinite;
-    }
-    @keyframes scroll-bounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); opacity: .35; }
-      50%       { transform: rotate(45deg) translateY(5px); opacity: .8; }
+    @keyframes chevron-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: .35; }
+      50%       { transform: translateX(-50%) translateY(6px); opacity: .8; }
     }
 
     /* ─── SECTIONS ─── */
-    section { padding: 100px 8%; }
-    .section-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 16px; display: block;
+    section { padding: 96px 8%; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--teal-dark); margin-bottom: 16px;
     }
     h2.section-title {
-      font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: var(--navy);
-      line-height: 1.15; margin-bottom: 16px;
+      font-size: clamp(28px, 4vw, 52px); font-weight: 800; color: var(--text);
+      line-height: 1.1; margin-bottom: 16px; letter-spacing: -1px;
     }
     .section-sub {
-      font-size: 16px; color: var(--text-muted); max-width: 600px; line-height: 1.7;
-      margin-bottom: 60px;
+      font-size: 17px; color: var(--text-muted); max-width: 580px; line-height: 1.7;
+      margin-bottom: 56px;
     }
+    .dark-section h2.section-title { color: #fff; }
+    .dark-section .section-eyebrow { color: var(--teal-light); }
+    .dark-section .section-sub { color: rgba(255,255,255,.5); }
 
     /* ─── WHY NOW ─── */
     .why-now { background: var(--bg-alt); }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .why-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 36px 28px;
-      position: relative; overflow: hidden;
-      transition: transform .25s, box-shadow .25s;
-      box-shadow: var(--shadow);
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 28px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
     }
-    .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .why-card::before {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 60%; height: 3px;
-    }
-    .why-card:nth-child(1)::before { background: var(--teal); }
-    .why-card:nth-child(2)::before { background: var(--accent2); }
-    .why-card:nth-child(3)::before { background: var(--accent3); }
-    .why-num {
-      width: 40px; height: 40px; border-radius: 50%;
+    .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 800; margin-bottom: 20px;
+      font-size: 22px; margin-bottom: 20px;
     }
-    .why-card:nth-child(1) .why-num { background: rgba(53,187,200,.12); color: var(--teal); }
-    .why-card:nth-child(2) .why-num { background: rgba(0,196,154,.12); color: var(--accent2); }
-    .why-card:nth-child(3) .why-num { background: rgba(244,104,60,.12); color: var(--accent3); }
-    .why-card h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
-    .why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .why-card:nth-child(1) .why-icon { background: rgba(6,182,212,.1); }
+    .why-card:nth-child(2) .why-icon { background: rgba(99,102,241,.1); }
+    .why-card:nth-child(3) .why-icon { background: rgba(16,185,129,.1); }
+    .why-card h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+    .why-card-num {
+      font-size: 48px; font-weight: 900; line-height: 1;
+      margin-bottom: 16px; letter-spacing: -2px;
+    }
+    .why-card:nth-child(1) .why-card-num { color: rgba(6,182,212,.15); }
+    .why-card:nth-child(2) .why-card-num { color: rgba(99,102,241,.15); }
+    .why-card:nth-child(3) .why-card-num { color: rgba(16,185,129,.15); }
 
     /* ─── SOLUTIONS ACCORDION ─── */
+    .solutions { background: var(--bg); }
     .solutions-accordion {
-      display: flex; flex-direction: column; gap: 0;
-      border: 1px solid var(--border); border-radius: 16px;
-      overflow: hidden; box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden;
     }
-    .sol-item {
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      transition: background .2s;
-    }
+    .sol-item { border-bottom: 1px solid var(--border); background: var(--bg); }
     .sol-item:last-child { border-bottom: none; }
-    .sol-item.open { background: var(--bg); }
 
     .sol-header {
-      display: flex; align-items: center; gap: 20px;
-      padding: 22px 32px; cursor: pointer;
-      transition: background .2s;
-      user-select: none;
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 28px; cursor: pointer;
+      transition: background .15s; user-select: none;
     }
     .sol-header:hover { background: var(--bg-alt); }
     .sol-item.open .sol-header { background: var(--bg-alt); }
 
-    .sol-num {
-      font-size: 11px; font-weight: 700; letter-spacing: 2px;
-      color: var(--teal); flex-shrink: 0; width: 24px;
-    }
+    .sol-num { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); flex-shrink: 0; width: 24px; }
     .sol-icon {
       width: 40px; height: 40px; border-radius: 10px;
-      background: rgba(53,187,200,.1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
-      transition: background .2s;
+      flex-shrink: 0; transition: opacity .2s;
     }
-    .sol-item.open .sol-icon { background: rgba(53,187,200,.18); }
-
+    .sol-item.open .sol-icon { opacity: 1; }
     .sol-header-text { flex: 1; }
-    .sol-header-text h3 {
-      font-size: 17px; font-weight: 700; color: var(--navy); margin: 0;
-    }
-    .sol-header-text .en-label {
-      font-size: 11px; font-weight: 500; color: var(--text-muted);
-      letter-spacing: 1px; display: block; margin-top: 2px;
-    }
-    .sol-header-tags { display: flex; gap: 8px; flex-shrink: 0; }
+    .sol-header-text h3 { font-size: 18px; font-weight: 700; color: var(--text); margin: 0; }
+    .sol-header-text .en-label { font-size: 13px; color: var(--text-muted); letter-spacing: .5px; display: block; margin-top: 3px; }
+    .sol-header-tags { display: flex; gap: 6px; flex-shrink: 0; }
     .sol-tag {
-      font-size: 11px; font-weight: 600; padding: 4px 10px;
-      border-radius: 20px; background: rgba(53,187,200,.1); color: var(--teal-dark);
+      font-size: 12px; font-weight: 600; padding: 4px 11px;
+      border-radius: 100px; background: var(--bg-alt); color: var(--text-muted);
+      border: 1px solid var(--border);
     }
     .sol-chevron {
       width: 28px; height: 28px; border-radius: 50%;
-      background: var(--border); display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: transform .3s, background .2s;
-      font-size: 12px; color: var(--text-muted);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 11px; color: var(--text-muted);
+      transition: transform .3s, background .2s, border-color .2s;
     }
-    .sol-item.open .sol-chevron {
-      transform: rotate(180deg);
-      background: rgba(53,187,200,.15); color: var(--teal-dark);
-    }
+    .sol-item.open .sol-chevron { transform: rotate(180deg); background: var(--teal); border-color: var(--teal); color: #fff; }
 
-    .sol-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height .4s cubic-bezier(0.4,0,0.2,1), padding .3s;
-      padding: 0 32px;
-    }
-    .sol-item.open .sol-body { max-height: 400px; padding: 0 32px 28px; }
-
+    .sol-body { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(0.4,0,0.2,1); }
+    .sol-item.open .sol-body { max-height: 360px; }
     .sol-body-inner {
-      border-top: 1px solid var(--border); padding-top: 24px;
+      padding: 0 28px 24px;
+      border-top: 1px solid var(--border);
       display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;
+      padding-top: 24px;
     }
-    .sol-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
-    .sol-divider {
-      width: 32px; height: 2px; border-radius: 2px; margin-bottom: 14px;
-    }
-    .sol-body-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .sol-body p { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+    .sol-body-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .sol-cta {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 700; color: var(--teal-dark);
+      font-size: 14px; font-weight: 600; color: var(--teal-dark);
       text-decoration: none; border: 1.5px solid var(--teal);
-      padding: 9px 18px; border-radius: 8px; white-space: nowrap;
-      transition: background .2s, color .2s;
-      align-self: start; margin-top: 4px;
+      padding: 8px 16px; border-radius: 8px; white-space: nowrap;
+      transition: background .2s, color .2s; align-self: start; margin-top: 4px;
     }
-    .sol-cta:hover { background: var(--teal); color: var(--navy); }
+    .sol-cta:hover { background: var(--teal); color: var(--dark); }
 
     /* ─── AI MATURITY ─── */
-    .maturity { background: var(--navy); }
-    .maturity-track {
-      display: flex; gap: 0; margin-top: 48px; overflow-x: auto;
-      padding-bottom: 16px;
+    .maturity { background: var(--dark); }
+    .maturity-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 2px; margin-top: 48px;
     }
-    /* RTL chevrons: tip points LEFT (direction of progress in Hebrew) */
+    @media(max-width:768px) { .maturity-steps { grid-template-columns: 1fr; gap: 2px; } }
     .maturity-step {
-      flex: 1; min-width: 160px; padding: 28px 28px 24px 36px;
-      position: relative;
-      clip-path: polygon(100% 0, 20px 0, 0 50%, 20px 100%, 100% 100%, calc(100% - 20px) 50%);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      padding: 28px 22px; border-radius: 12px;
+      transition: background .3s, transform .3s;
+      cursor: default;
     }
-    /* First child in DOM = step 01 = rightmost in RTL = no right notch */
-    .maturity-step:first-child {
-      clip-path: polygon(100% 0, 20px 0, 0 50%, 20px 100%, 100% 100%);
-    }
-    /* Last child in DOM = step 05 = leftmost in RTL = no left tip, flat left */
-    .maturity-step:last-child {
-      clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%, calc(100% - 20px) 50%);
-    }
-    .maturity-step:nth-child(1) { background: #35bbc8; }
-    .maturity-step:nth-child(2) { background: #00b894; }
-    .maturity-step:nth-child(3) { background: #3a86e8; }
-    .maturity-step:nth-child(4) { background: #f4a025; }
-    .maturity-step:nth-child(5) { background: #9b59b6; }
-    .maturity-num { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.7); letter-spacing: 1px; }
-    .maturity-title { font-size: 16px; font-weight: 800; color: #fff; margin: 4px 0 8px; }
-    .maturity-desc { font-size: 12px; color: rgba(255,255,255,.8); line-height: 1.5; }
+    .maturity-step:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
+    .maturity-step:nth-child(1) { border-top: 3px solid var(--teal); }
+    .maturity-step:nth-child(2) { border-top: 3px solid var(--purple); }
+    .maturity-step:nth-child(3) { border-top: 3px solid var(--green); }
+    .maturity-step:nth-child(4) { border-top: 3px solid var(--amber); }
+    .maturity-step:nth-child(5) { border-top: 3px solid var(--coral); }
+    .maturity-num { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 14px; }
+    .maturity-step:nth-child(1) .maturity-num { color: var(--teal); }
+    .maturity-step:nth-child(2) .maturity-num { color: var(--purple); }
+    .maturity-step:nth-child(3) .maturity-num { color: var(--green); }
+    .maturity-step:nth-child(4) .maturity-num { color: var(--amber); }
+    .maturity-step:nth-child(5) .maturity-num { color: var(--coral); }
+    .maturity-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .maturity-desc { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+    /* ─── INTEGRATIONS ─── */
+    .integrations { background: var(--bg-alt); text-align: center; }
+    .integrations .section-sub { margin: 0 auto 48px; }
+    .integrations-svg { width: 100%; max-width: 680px; height: auto; margin: 0 auto; display: block; }
 
     /* ─── VERTICALS ─── */
-    .verticals-grid {
-      columns: 2;
-      column-gap: 24px;
-    }
-    @media (max-width: 768px) { .verticals-grid { columns: 1; } }
+    .verticals { background: var(--bg); }
+    .verticals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; align-items: start; }
     .vertical-card {
-      break-inside: avoid;
-      margin-bottom: 24px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: box-shadow .25s;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: var(--bg); transition: box-shadow .25s, border-color .25s;
     }
-    .vertical-card.open { box-shadow: var(--shadow-lg); }
+    .vertical-card:hover { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal), var(--shadow); }
+    .vertical-card.open { box-shadow: var(--shadow); }
     .vertical-header {
-      padding: 22px 24px;
-      display: flex; align-items: center; gap: 12px;
-      cursor: pointer; transition: background .2s; user-select: none;
+      padding: 20px 22px; display: flex; align-items: center; gap: 14px;
+      cursor: pointer; transition: background .15s; user-select: none;
     }
     .vertical-header:hover { background: var(--bg-alt); }
     .vertical-card.open .vertical-header { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
     .vert-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
     }
     .vert-header-text { flex: 1; }
-    .vertical-header h3 { font-size: 18px; font-weight: 700; color: var(--navy); }
+    .vertical-header h3 { font-size: 16px; font-weight: 700; color: var(--text); }
     .vertical-header .en-sub { font-size: 12px; color: var(--text-muted); }
     .vert-chevron {
       width: 26px; height: 26px; border-radius: 50%;
-      background: var(--border); display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-size: 11px; color: var(--text-muted);
-      transition: transform .3s, background .2s;
+      transition: transform .3s, background .2s, border-color .2s;
     }
-    .vertical-card.open .vert-chevron { transform: rotate(180deg); background: rgba(53,187,200,.15); color: var(--teal-dark); }
-
-    .vert-collapsible {
-      max-height: 0; overflow: hidden;
-      transition: max-height .4s cubic-bezier(0.4,0,0.2,1);
-    }
+    .vertical-card.open .vert-chevron { transform: rotate(180deg); background: var(--teal); border-color: var(--teal); color: #fff; }
+    .vert-collapsible { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(0.4,0,0.2,1); }
     .vertical-card.open .vert-collapsible { max-height: 600px; }
-
-    .vert-body { padding: 20px 28px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .vert-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
-    .vert-col.challenges h4 { color: #e05252; }
-    .vert-col.solutions h4 { color: var(--accent2); }
-    .vert-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .vert-col li { font-size: 13px; color: var(--text-muted); line-height: 1.5; display: flex; gap: 8px; }
-    .vert-col li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-    .vert-col.challenges li::before { background: #e05252; }
-    .vert-col.solutions li::before { background: var(--accent2); }
+    .vert-body { padding: 20px 22px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .vert-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .vert-col.challenges h4 { color: #ef4444; }
+    .vert-col.solutions h4 { color: var(--green); }
+    .vert-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .vert-col li { font-size: 13px; color: var(--text-muted); line-height: 1.5; display: flex; gap: 8px; align-items: flex-start; }
+    .vert-col li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+    .vert-col.challenges li::before { background: #ef4444; }
+    .vert-col.solutions li::before { background: var(--green); }
     .vert-outcome {
-      margin: 0 28px 24px;
-      background: rgba(0,196,154,.07);
-      border: 1px solid rgba(0,196,154,.2);
-      border-radius: 10px; padding: 14px 16px;
-      font-size: 13px; color: #00956e; line-height: 1.6;
+      margin: 0 22px 20px; background: rgba(16,185,129,.06);
+      border: 1px solid rgba(16,185,129,.15); border-radius: 10px;
+      padding: 12px 14px; font-size: 13px; color: #047857; line-height: 1.6;
     }
 
     /* ─── CONTACT ─── */
-    .contact { background: var(--navy); }
-    .contact-wrap {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
-    }
-    .contact-info h2 { margin-bottom: 20px; color: #fff; }
-    .contact-info p { color: rgba(255,255,255,.6); line-height: 1.7; margin-bottom: 32px; }
-    .contact .section-tag { color: var(--teal); }
+    .contact { background: var(--dark-2); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info h2 { color: #fff !important; }
+    .contact-info p { color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 36px; font-size: 16px; }
     .contact-detail {
       display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
     }
     .contact-detail .icon {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(53,187,200,.15); display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
     }
-    .contact-detail span { color: rgba(255,255,255,.6); font-size: 15px; }
-    .contact-detail a { color: var(--teal); text-decoration: none; }
+    .contact-detail span { color: rgba(255,255,255,.5); font-size: 14px; }
+    .contact-detail a { color: var(--teal-light); text-decoration: none; font-size: 14px; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .contact-form input,
     .contact-form textarea,
     .contact-form select {
-      width: 100%; padding: 14px 18px;
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
-      border-radius: 10px; color: #fff; font-family: 'Heebo', sans-serif;
-      font-size: 14px; outline: none; transition: border-color .2s;
+      width: 100%; padding: 13px 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; color: #fff; font-family: 'Rubik', sans-serif;
+      font-size: 14px; outline: none; transition: border-color .2s, background .2s;
       direction: rtl;
     }
-    .contact-form select option { background: var(--navy); color: #fff; }
-    .contact-form input:focus,
-    .contact-form textarea:focus { border-color: var(--teal); }
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder { color: rgba(255,255,255,.35); }
-    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form select option { background: #1a2035; color: #fff; }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--teal); background: rgba(6,182,212,.04); }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,.25); }
+    .contact-form textarea { min-height: 110px; resize: vertical; }
     .contact-form button {
-      background: var(--teal); color: var(--navy);
-      font-size: 15px; font-weight: 700; padding: 14px 32px;
-      border: none; border-radius: 8px; cursor: pointer;
-      font-family: 'Heebo', sans-serif; transition: background .2s, transform .2s;
+      background: var(--teal); color: var(--dark);
+      font-size: 15px; font-weight: 700; padding: 14px 28px;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: 'Rubik', sans-serif; transition: background .2s, transform .2s, box-shadow .2s;
     }
-    .contact-form button:hover { background: #50cfd9; transform: translateY(-2px); }
+    .contact-form button:hover {
+      background: var(--teal-light); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(6,182,212,0.3);
+    }
 
     /* ─── FOOTER ─── */
     footer {
-      background: var(--navy-dark);
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 48px 8% 32px;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 56px 8% 32px;
     }
     .footer-top {
-      display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
+      display: grid; grid-template-columns: 1.6fr repeat(3, 1fr);
       gap: 40px; margin-bottom: 48px;
     }
-    .footer-brand p { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: 16px; max-width: 260px; }
-    .footer-col h4 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; letter-spacing: .5px; }
+    .footer-brand p {
+      font-size: 14px; color: rgba(255,255,255,.35); line-height: 1.7;
+      margin-top: 16px; max-width: 240px;
+    }
+    .footer-brand img { height: 32px; width: auto; filter: brightness(0) invert(1); opacity: .7; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.6); margin-bottom: 16px; letter-spacing: .5px; text-transform: uppercase; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col a { font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
-    .footer-col a:hover { color: var(--teal); }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--teal-light); }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.07); padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.05); padding-top: 24px;
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 12px; color: rgba(255,255,255,.35);
+      font-size: 12px; color: rgba(255,255,255,.2);
     }
 
+    /* ─── ICONS ─── */
+    .icon {
+      display: block; width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .why-icon .icon { width: 22px; height: 22px; }
+    .sol-icon .icon { width: 18px; height: 18px; }
+    .vert-icon .icon { width: 20px; height: 20px; }
+    .contact-detail .icon-wrap { display: flex; align-items: center; justify-content: center; }
+    .contact-detail .icon-wrap .icon { width: 18px; height: 18px; color: var(--teal-light); }
+
     /* ─── SCROLL REVEAL ─── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── MOBILE ─── */
@@ -449,31 +430,16 @@
       .contact-wrap { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .maturity-track { flex-direction: column; }
-      .maturity-step { clip-path: none !important; margin-bottom: 2px; }
+      .maturity-steps { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <!-- ─── NAV ─── -->
-<nav>
+<nav id="main-nav">
   <a class="nav-logo" href="#">
-    <!-- Moore Consulting M logo -->
-    <svg class="nav-logo-svg" width="52" height="42" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Teal left outer triangle -->
-      <polygon points="0,42 13,42 26,2" fill="#35BBC8"/>
-      <!-- Black left inner triangle -->
-      <polygon points="13,42 26,2 19.5,42" fill="#0d1b2a"/>
-      <!-- Teal right outer triangle -->
-      <polygon points="26,2 39,42 52,42" fill="#35BBC8"/>
-      <!-- Black right inner triangle -->
-      <polygon points="26,2 32.5,42 39,42" fill="#0d1b2a"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span>MOORE</span>
-      <span>CONSULTING · TECHNOLOGY</span>
-    </div>
+    <img src="moore_logo.png" alt="Moore Consulting Technology" />
   </a>
   <ul class="nav-links">
     <li><a href="#why">למה עכשיו</a></li>
@@ -481,46 +447,59 @@
     <li><a href="#verticals">תעשיות</a></li>
     <li><a href="#contact">צור קשר</a></li>
   </ul>
-  <a class="nav-cta" href="#contact">קבעו פגישה</a>
+  <a class="nav-cta" href="#contact">קבעו פגישה &nbsp;→</a>
 </nav>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
   <div class="hero-content">
-    <p class="hero-tag">Moore Consulting · Technology</p>
+    <div class="hero-badge"><span></span> Moore Consulting · Technology</div>
     <h1>Technology<br/><em>Solutions</em></h1>
-    <p class="hero-sub1">ייעול תהליכים · אוטומציה · חדשנות מבוססת AI</p>
-    <p class="hero-sub2">מאבחון נקודתי ועד הטמעה מקצה לקצה</p>
+    <p class="hero-sub"><strong>ייעול תהליכים · אוטומציה · חדשנות מבוססת AI</strong></p>
+    <p class="hero-sub">מאבחון נקודתי ועד הטמעה מקצה לקצה</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#maturity">לסל הפתרונות</a>
-      <a class="btn-outline" href="#contact">קבל הצעה</a>
+      <a class="btn-primary" href="#solutions">לסל הפתרונות</a>
+      <a class="btn-ghost" href="#contact">קבל הצעה</a>
     </div>
   </div>
-
   <div class="scroll-indicator">
-    <div class="scroll-arrow"></div>
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 10.5L14 17.5L21 10.5" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </section>
 
+
 <!-- ─── WHY NOW ─── -->
 <section class="why-now" id="why">
-  <span class="section-tag">למה עכשיו?</span>
+  <span class="section-eyebrow">למה עכשיו?</span>
   <h2 class="section-title">כבר לא יתרון, אלא הכרח —<br/>ארגונים שלא ממנפים את הכוח של הטכנולוגיה ישארו מאחור</h2>
   <p class="section-sub">Moore Consulting מציעה סל פתרונות סדור — מאבחון נקודתי ועד הטמעה מקצה לקצה.</p>
 
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-num">1</div>
+      <div class="why-card-num">01</div>
+      <div class="why-icon">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+      </div>
       <h3>הטמעה פשוטה, תוצאות מיידיות</h3>
       <p>פתרונות AI מודרניים מתחברים ישירות ובקלות לדאטה הקיים בארגון (מערכות CRM, ERP ואקסלים), ומאפשרים להפיק ערך עסקי ולחלץ מידע חסום תוך ימים ספורים.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-num">2</div>
+      <div class="why-card-num">02</div>
+      <div class="why-icon">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg>
+      </div>
       <h3>אוטומציית AI: חיסול המשימות המונוטוניות</h3>
       <p>היום קל מאי פעם לרתום כלי AI כדי לשחרר את הצוותים שלכם ממשימות מונוטוניות, הזנות ידניות ופעולות copy-paste מתישות. האוטומציה החכמה מונעת טעויות אנוש יקרות, ומפנה את המשאב האנושי לעבודה שמייצרת ערך אמיתי.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-num">3</div>
+      <div class="why-card-num">03</div>
+      <div class="why-icon">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+      </div>
       <h3>מירוץ ה-AI: חלון ההזדמנויות נסגר מהר</h3>
       <p>כלי ה-AI הנוכחיים בשלים, זמינים ובעלויות נמוכות מאי פעם. הפער התחרותי בשוק נסגר כיום בחודשים, לא בשנים. ארגון שלא ינצל את נגישות ה-AI עכשיו כדי לייעל את התהליכים שלו, יגלה שהמתחרים פתחו פער בלתי ניתן לגישור.</p>
     </div>
@@ -528,11 +507,12 @@
 </section>
 
 <!-- ─── AI MATURITY ─── -->
-<section class="maturity" id="maturity">
-  <h2 class="section-title" style="color:#fff;font-size:clamp(40px,6vw,72px);letter-spacing:-1px;margin-bottom:12px">AI Maturity</h2>
-  <p class="section-sub" style="font-size:clamp(20px,2.5vw,28px);color:rgba(255,255,255,.75);font-weight:600;margin-bottom:48px">איפה הארגון שלך נמצא היום?</p>
+<section class="maturity dark-section" id="maturity">
+  <span class="section-eyebrow">AI Maturity Model</span>
+  <h2 class="section-title">איפה הארגון שלך נמצא היום?</h2>
+  <p class="section-sub">זהה את שלב הבשלות שלך — ונתאים את המסלול המדויק עבורך.</p>
 
-  <div class="maturity-track">
+  <div class="maturity-steps">
     <div class="maturity-step reveal">
       <div class="maturity-num">01</div>
       <div class="maturity-title">Awareness</div>
@@ -562,16 +542,16 @@
 </section>
 
 <!-- ─── SOLUTIONS ─── -->
-<section id="solutions" style="background:var(--bg-alt)">
-  <h2 class="section-title">פתרונות —<br/>מאבחון ועד הטמעה</h2>
+<section id="solutions" class="solutions">
+  <span class="section-eyebrow">פתרונות</span>
+  <h2 class="section-title">מאבחון<br/>ועד הטמעה</h2>
   <p class="section-sub">כל מסלול עומד בפני עצמו או משתלב עם האחרים ליצירת מערכת טכנולוגית שלמה.</p>
 
   <div class="solutions-accordion">
-
     <div class="sol-item open">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">01</span>
-        <div class="sol-icon">🔍</div>
+        <div class="sol-icon" style="background:rgba(6,182,212,.1);color:var(--teal)"><svg class="icon" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg></div>
         <div class="sol-header-text">
           <h3>אבחון וטיפול בנזילות נתונים</h3>
           <span class="en-label">Data Flow Diagnostic</span>
@@ -585,8 +565,7 @@
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:var(--teal)"></div>
-            <p>אבחון מקיף של כל נקודות המשק בהן מועברים נתונים ידנית — ייצוא מ-Priority, הזנה ידנית לאקסל, העתקות בין מחלקות. התוצר: מפת זרימה ויזואלית (Data Map) וסט המלצות לשיפור כולל כימות ההפסד הכספי.</p>
+            <p>אבחון מקיף של כל נקודות המשק בהן מועברים נתונים ידנית — ייצוא מ-Priority, הזנה ידנית לאקסל, העתקות בין מחלקות. התוצר: מפת זרימה ויזואלית וסט המלצות לשיפור כולל כימות ההפסד הכספי.</p>
             <div class="sol-body-tags">
               <span class="sol-tag">כימות הפסדים</span>
               <span class="sol-tag">Data Map</span>
@@ -601,26 +580,25 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">02</span>
-        <div class="sol-icon">📊</div>
+        <div class="sol-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><svg class="icon" viewBox="0 0 24 24"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg></div>
         <div class="sol-header-text">
           <h3>פלטפורמת דיווח אחודה</h3>
           <span class="en-label">Integrated Reporting</span>
         </div>
         <div class="sol-header-tags">
-          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Executive Snapshot</span>
-          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Enterprise BI</span>
+          <span class="sol-tag">Executive Snapshot</span>
+          <span class="sol-tag">Enterprise BI</span>
         </div>
         <div class="sol-chevron">▾</div>
       </div>
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:#00956e"></div>
             <p>חיבור מערכות תפעוליות · ERP · אקסל ל-Data Warehouse עם ויזואליזציה מלאה. שני מסלולים: Executive Snapshot לחברות קטנות/בינוניות, ו-Enterprise BI עם Power BI / Tableau לחברות גדולות.</p>
             <div class="sol-body-tags">
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Executive Snapshot</span>
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">Enterprise BI</span>
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">KPIs</span>
+              <span class="sol-tag">Executive Snapshot</span>
+              <span class="sol-tag">Enterprise BI</span>
+              <span class="sol-tag">KPIs</span>
             </div>
           </div>
           <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
@@ -631,26 +609,25 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">03</span>
-        <div class="sol-icon">🤖</div>
+        <div class="sol-icon" style="background:rgba(249,115,22,.1);color:var(--coral)"><svg class="icon" viewBox="0 0 24 24"><path d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg></div>
         <div class="sol-header-text">
           <h3>סוכני AI לאוטומציית Back Office</h3>
           <span class="en-label">AI Agents</span>
         </div>
         <div class="sol-header-tags">
-          <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">קליטת הזמנות</span>
-          <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">עיבוד חשבוניות</span>
+          <span class="sol-tag">קליטת הזמנות</span>
+          <span class="sol-tag">עיבוד חשבוניות</span>
         </div>
         <div class="sol-chevron">▾</div>
       </div>
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:#d4522a"></div>
-            <p>החלפת משימות מונוטוניות ורוחביות בסוכנים שלומדים את תהליכי הארגון ומבצעים אותם באופן עצמאי: קליטת הזמנות, השוואת הצעות מספקים, רישומי יומן, עיבוד חשבוניות, ומענה ללקוחות.</p>
+            <p>החלפת משימות מונוטוניות בסוכנים שלומדים את תהליכי הארגון ומבצעים אותם באופן עצמאי: קליטת הזמנות, השוואת הצעות מספקים, עיבוד חשבוניות, ומענה ללקוחות.</p>
             <div class="sol-body-tags">
-              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">קליטת הזמנות</span>
-              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">עיבוד חשבוניות</span>
-              <span class="sol-tag" style="color:#d4522a;background:rgba(244,104,60,.1)">מענה לקוחות</span>
+              <span class="sol-tag">קליטת הזמנות</span>
+              <span class="sol-tag">עיבוד חשבוניות</span>
+              <span class="sol-tag">מענה לקוחות</span>
             </div>
           </div>
           <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
@@ -661,26 +638,25 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">04</span>
-        <div class="sol-icon">🧠</div>
+        <div class="sol-icon" style="background:rgba(99,102,241,.1);color:var(--purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
         <div class="sol-header-text">
           <h3>ניהול ידע ושימור ה-DNA הארגוני</h3>
           <span class="en-label">Knowledge &amp; DNA</span>
         </div>
         <div class="sol-header-tags">
-          <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">Wiki חכם</span>
-          <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">חיפוש שפתי</span>
+          <span class="sol-tag">Wiki חכם</span>
+          <span class="sol-tag">חיפוש שפתי</span>
         </div>
         <div class="sol-chevron">▾</div>
       </div>
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:#9b59b6"></div>
-            <p>מיפוי ותיעוד ידע, נהלים, חוזים והיסטוריה ארגונית. כלי AI לשליפה: חיפוש שפתי על כל המידע הארגוני. ספריית ידע דינמית — Wiki חי שמתעדכן ומתרחב באופן שוטף ומשתלב עם כלי BI.</p>
+            <p>מיפוי ותיעוד ידע, נהלים, חוזים והיסטוריה ארגונית. כלי AI לשליפה: חיפוש שפתי על כל המידע הארגוני. ספריית ידע דינמית — Wiki חי שמתעדכן ומשתלב עם כלי BI.</p>
             <div class="sol-body-tags">
-              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">Wiki חכם</span>
-              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">חיפוש שפתי</span>
-              <span class="sol-tag" style="color:#7e3ecc;background:rgba(155,89,182,.1)">שילוב BI</span>
+              <span class="sol-tag">Wiki חכם</span>
+              <span class="sol-tag">חיפוש שפתי</span>
+              <span class="sol-tag">שילוב BI</span>
             </div>
           </div>
           <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
@@ -691,26 +667,25 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">05</span>
-        <div class="sol-icon">⚡</div>
+        <div class="sol-icon" style="background:rgba(245,158,11,.1);color:var(--amber)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
         <div class="sol-header-text">
           <h3>90 יום של אוטומציה</h3>
           <span class="en-label">The 90-Day Accelerator</span>
         </div>
         <div class="sol-header-tags">
-          <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">Quick Wins</span>
-          <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ROI מדיד</span>
+          <span class="sol-tag">Quick Wins</span>
+          <span class="sol-tag">ROI מדיד</span>
         </div>
         <div class="sol-chevron">▾</div>
       </div>
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:#f9a825"></div>
-            <p>מאבחון רוחבי ל-Quick Wins מהירים ולהטמעה מלאה תוך 90 יום. מיפוי כלל התהליכים → בחירת 1–4 מוקדים → ביצוע מקצה לקצה → מדידת השפעה כמותית והוכחת תכנות ל-ROI מיידי.</p>
+            <p>מאבחון רוחבי ל-Quick Wins מהירים ולהטמעה מלאה תוך 90 יום. מיפוי כלל התהליכים → בחירת מוקדים → ביצוע מקצה לקצה → מדידת השפעה והוכחת ROI מיידי.</p>
             <div class="sol-body-tags">
-              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">Quick Wins</span>
-              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ROI מדיד</span>
-              <span class="sol-tag" style="color:#c47f00;background:rgba(249,168,37,.1)">ספרינט קצר</span>
+              <span class="sol-tag">Quick Wins</span>
+              <span class="sol-tag">ROI מדיד</span>
+              <span class="sol-tag">ספרינט קצר</span>
             </div>
           </div>
           <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
@@ -721,7 +696,7 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">06</span>
-        <div class="sol-icon">🎯</div>
+        <div class="sol-icon" style="background:rgba(6,182,212,.1);color:var(--teal)"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg></div>
         <div class="sol-header-text">
           <h3>הטמעת AI בארגון</h3>
           <span class="en-label">AI Adoption</span>
@@ -735,8 +710,7 @@
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:var(--teal)"></div>
-            <p>לא עוצרים בסדנה — מלווים מאבחון ועד אימוץ בפועל בעבודה היומיומית. מיפוי ואבחון → הכשרה מותאמת → ליווי ואימוץ בשטח. רוב הגופים מסתיימים בסדנה — אנחנו מלווים עד שה-AI הופך לכלי עבודה אמיתי.</p>
+            <p>לא עוצרים בסדנה — מלווים מאבחון ועד אימוץ בפועל. מיפוי ואבחון → הכשרה מותאמת → ליווי בשטח. רוב הגופים מסתיימים בסדנה — אנחנו מלווים עד שה-AI הופך לכלי עבודה אמיתי.</p>
             <div class="sol-body-tags">
               <span class="sol-tag">הכשרה מותאמת</span>
               <span class="sol-tag">ליווי שוטף</span>
@@ -751,46 +725,145 @@
     <div class="sol-item">
       <div class="sol-header" onclick="toggleSol(this)">
         <span class="sol-num">07</span>
-        <div class="sol-icon">⚙️</div>
+        <div class="sol-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><svg class="icon" viewBox="0 0 24 24"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
         <div class="sol-header-text">
           <h3>מודלים חכמים לתעשייה ולתפעול</h3>
           <span class="en-label">ML &amp; Industry</span>
         </div>
         <div class="sol-header-tags">
-          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">ML מותאם</span>
-          <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">חיזוי תקלות</span>
+          <span class="sol-tag">ML מותאם</span>
+          <span class="sol-tag">חיזוי תקלות</span>
         </div>
         <div class="sol-chevron">▾</div>
       </div>
       <div class="sol-body">
         <div class="sol-body-inner">
           <div>
-            <div class="sol-divider" style="background:#00956e"></div>
             <p>מודל מאומן על הדאטה שלכם, שמשתלב בקו הייצור ובתהליך — לא פתרון מדף גנרי. איסוף וחיבור דאטה → אימון מודל תפור → שילוב בקו וניטור עם שיפור מתמיד.</p>
             <div class="sol-body-tags">
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">ML מותאם</span>
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">חיזוי תקלות</span>
-              <span class="sol-tag" style="color:#00956e;background:rgba(0,196,154,.1)">אופטימיזציית קו</span>
+              <span class="sol-tag">ML מותאם</span>
+              <span class="sol-tag">חיזוי תקלות</span>
+              <span class="sol-tag">אופטימיזציית קו</span>
             </div>
           </div>
           <a class="sol-cta" href="#contact">קבלו הצעה ←</a>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
+<!-- ─── INTEGRATIONS ─── -->
+<section class="integrations" id="integrations">
+  <span class="section-eyebrow">סנכרון מערכות</span>
+  <h2 class="section-title">המידע שלכם כבר שם.<br/>רק צריך לחבר את הנקודות.</h2>
+  <p class="section-sub">הפתרונות שלנו מסנכרנים בין כל המערכות הקיימות בארגון — CRM, ERP, קבצים ובסיסי נתונים — כך שהמידע זורם בחופשיות, הצוותים עובדים בסנכרון, וההנהלה מקבלת החלטות בזמן אמת.</p>
+
+  <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" class="integrations-svg">
+    <defs>
+      <radialGradient id="meshGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.1"/>
+        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="gCRM"   cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#06b6d4"/></radialGradient>
+      <radialGradient id="gERP"   cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#6366f1"/></radialGradient>
+      <radialGradient id="gAPI"   cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#ec4899"/></radialGradient>
+      <radialGradient id="gDB"    cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient>
+      <radialGradient id="gFile"  cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#f97316"/></radialGradient>
+      <radialGradient id="gCloud" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#10b981"/></radialGradient>
+    </defs>
+    <ellipse cx="350" cy="250" rx="260" ry="210" fill="url(#meshGlow)"/>
+    <line x1="350" y1="80"  x2="497" y2="165" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="497" y1="165" x2="497" y2="335" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="497" y1="335" x2="350" y2="420" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="350" y1="420" x2="203" y2="335" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="203" y1="335" x2="203" y2="165" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="203" y1="165" x2="350" y2="80"  stroke="#10b981" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.25"/>
+    <line x1="350" y1="80"  x2="497" y2="335" stroke="#06b6d4" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <line x1="497" y1="165" x2="350" y2="420" stroke="#6366f1" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <line x1="497" y1="335" x2="203" y2="165" stroke="#ec4899" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <line x1="350" y1="420" x2="203" y2="165" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <line x1="203" y1="335" x2="350" y2="80"  stroke="#f97316" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <line x1="203" y1="165" x2="497" y2="335" stroke="#10b981" stroke-width="1" stroke-dasharray="4,5" opacity="0.15"/>
+    <path id="r12" d="M350,80 L497,165" fill="none"/>
+    <path id="r23" d="M497,165 L497,335" fill="none"/>
+    <path id="r34" d="M497,335 L350,420" fill="none"/>
+    <path id="r45" d="M350,420 L203,335" fill="none"/>
+    <path id="r56" d="M203,335 L203,165" fill="none"/>
+    <path id="r61" d="M203,165 L350,80" fill="none"/>
+    <path id="c13" d="M350,80 L497,335" fill="none"/>
+    <path id="c24" d="M497,165 L350,420" fill="none"/>
+    <circle r="4" fill="#06b6d4" opacity="0.9"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0s"><mpath href="#r12"/></animateMotion></circle>
+    <circle r="4" fill="#6366f1" opacity="0.9"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.4s"><mpath href="#r23"/></animateMotion></circle>
+    <circle r="4" fill="#ec4899" opacity="0.9"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.8s"><mpath href="#r34"/></animateMotion></circle>
+    <circle r="4" fill="#7c3aed" opacity="0.9"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1.2s"><mpath href="#r45"/></animateMotion></circle>
+    <circle r="4" fill="#f97316" opacity="0.9"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.2s"><mpath href="#r56"/></animateMotion></circle>
+    <circle r="4" fill="#10b981" opacity="0.9"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.0s"><mpath href="#r61"/></animateMotion></circle>
+    <circle r="3" fill="#06b6d4" opacity="0.5"><animateMotion dur="3.4s" repeatCount="indefinite" begin="0.6s"><mpath href="#c13"/></animateMotion></circle>
+    <circle r="3" fill="#6366f1" opacity="0.5"><animateMotion dur="3.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#c24"/></animateMotion></circle>
+    <!-- N1 CRM (350,80,r=38) — person -->
+    <circle cx="350" cy="80" r="38" fill="url(#gCRM)" filter="drop-shadow(0 4px 16px rgba(6,182,212,0.4))"/>
+    <g transform="translate(350,74)" fill="white" opacity="0.93">
+      <circle cx="0" cy="-5" r="4.5"/>
+      <path d="M-7,7 Q-7,0 0,0 Q7,0 7,7Z"/>
+    </g>
+    <text x="350" y="95" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">CRM</text>
+
+    <!-- N2 ERP (497,165,r=34) — building -->
+    <circle cx="497" cy="165" r="34" fill="url(#gERP)" filter="drop-shadow(0 4px 16px rgba(99,102,241,0.4))"/>
+    <g transform="translate(497,160)" fill="white" opacity="0.93">
+      <rect x="-5.5" y="-7" width="11" height="13.5"/>
+      <rect x="-3.5" y="-5"  width="2.5" height="2.5" fill="rgba(0,0,0,0.22)"/>
+      <rect x="1"    y="-5"  width="2.5" height="2.5" fill="rgba(0,0,0,0.22)"/>
+      <rect x="-3.5" y="-1"  width="2.5" height="2.5" fill="rgba(0,0,0,0.22)"/>
+      <rect x="1"    y="-1"  width="2.5" height="2.5" fill="rgba(0,0,0,0.22)"/>
+      <rect x="-1.5" y="3"   width="3"   height="3.5" fill="rgba(0,0,0,0.22)"/>
+    </g>
+    <text x="497" y="178" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">ERP</text>
+
+    <!-- N3 API (497,335,r=34) — lightning bolt -->
+    <circle cx="497" cy="335" r="34" fill="url(#gAPI)" filter="drop-shadow(0 4px 16px rgba(236,72,153,0.4))"/>
+    <g transform="translate(497,330)" fill="white" opacity="0.93">
+      <path d="M3,-8 L-3,0 L1,0 L-3,8 L8,-1 L3.5,-1 Z"/>
+    </g>
+    <text x="497" y="348" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">API</text>
+
+    <!-- N4 Database (350,420,r=38) — cylinder -->
+    <circle cx="350" cy="420" r="38" fill="url(#gDB)" filter="drop-shadow(0 4px 16px rgba(124,58,237,0.4))"/>
+    <g transform="translate(350,414)">
+      <rect x="-6.5" y="-3" width="13" height="9" fill="white" opacity="0.93"/>
+      <ellipse cx="0" cy="-3" rx="6.5" ry="2.5" fill="white" opacity="0.93"/>
+      <ellipse cx="0" cy="6"  rx="6.5" ry="2.5" fill="white" opacity="0.93"/>
+      <line x1="-6.5" y1="1.5" x2="6.5" y2="1.5" stroke="rgba(80,30,180,0.25)" stroke-width="1"/>
+    </g>
+    <text x="350" y="435" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">Database</text>
+
+    <!-- N5 Files (203,335,r=34) — folder -->
+    <circle cx="203" cy="335" r="34" fill="url(#gFile)" filter="drop-shadow(0 4px 16px rgba(249,115,22,0.4))"/>
+    <g transform="translate(203,330)" fill="white" opacity="0.93">
+      <path d="M-7,-5.5 L-7,6 L7,6 L7,-2 L0.5,-2 L-1,-5.5 Z"/>
+    </g>
+    <text x="203" y="348" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">קבצים</text>
+
+    <!-- N6 Cloud (203,165,r=34) — cloud -->
+    <circle cx="203" cy="165" r="34" fill="url(#gCloud)" filter="drop-shadow(0 4px 16px rgba(16,185,129,0.4))"/>
+    <g transform="translate(203,160)" fill="white" opacity="0.93">
+      <path d="M-7,5 Q-10,5 -10,2 Q-10,-2 -6.5,-2.5 Q-5.5,-7.5 0,-7.5 Q5,-7.5 6,-3 Q9.5,-2.5 9.5,1.5 Q9.5,5 6,5 Z"/>
+    </g>
+    <text x="203" y="178" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Rubik,sans-serif" opacity="0.85">ענן</text>
+  </svg>
+</section>
+
 <!-- ─── VERTICALS ─── -->
-<section id="verticals" style="background:var(--bg-alt)">
-  <h2 class="section-title">פתרונות עבור<br/>כל תעשייה</h2>
+<section id="verticals" class="verticals">
+  <span class="section-eyebrow">תעשיות</span>
+  <h2 class="section-title">פתרונות לכל תעשייה</h2>
   <p class="section-sub">לכל תעשייה יש אתגרים ייחודיים. אנחנו מתאימים את הפתרון לארגון שלך.</p>
 
   <div class="verticals-grid">
-
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(53,187,200,.1);color:var(--teal-dark)">💰</div>
+        <div class="vert-icon" style="background:rgba(6,182,212,.1);color:var(--teal-dark)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
         <div class="vert-header-text">
           <h3>מחלקה פיננסית</h3>
           <div class="en-sub">Finance</div>
@@ -799,8 +872,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>סגירת חודש איטית</span></li><li><span>דוחות חוזרים</span></li><li><span>זיהוי חריגות מאוחר</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>אוטומציות חכמות</span></li><li><span>סוכן לסגירת חודש</span></li><li><span>מודל ML לחיזוי תזרים</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>סגירת חודש איטית</li><li>דוחות חוזרים</li><li>זיהוי חריגות מאוחר</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>אוטומציות חכמות</li><li>סוכן לסגירת חודש</li><li>מודל ML לחיזוי תזרים</li></ul></div>
         </div>
         <div class="vert-outcome">פחות עבודה ידנית, סגירת חודש מהירה ומדויקת יותר ושקיפות מלאה על המצב הפיננסי.</div>
       </div>
@@ -808,7 +881,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(0,196,154,.1);color:#00956e">📦</div>
+        <div class="vert-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><svg class="icon" viewBox="0 0 24 24"><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg></div>
         <div class="vert-header-text">
           <h3>מחסן ולוגיסטיקה</h3>
           <div class="en-sub">Logistics</div>
@@ -817,16 +890,16 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>ליקוט איטי ולא יעיל</span></li><li><span>שיעור טעויות גבוה</span></li><li><span>תלות בעובדים ותיקים</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מערכת ליקוט ייעודית חכמה</span></li><li><span>אופטימיזציית מסלולים</span></li><li><span>אימות בסריקת ברקוד</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>ליקוט איטי ולא יעיל</li><li>שיעור טעויות גבוה</li><li>תלות בעובדים ותיקים</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>מערכת ליקוט חכמה</li><li>אופטימיזציית מסלולים</li><li>אימות בסריקת ברקוד</li></ul></div>
         </div>
-        <div class="vert-outcome">ליקוט מהיר ומדויק יותר, ירידה חדה בטעויות ובהחזרות וקיצור משמעותי בזמן הכשרת עובדים חדשים.</div>
+        <div class="vert-outcome">ליקוט מהיר ומדויק יותר, ירידה חדה בטעויות ובהחזרות וקיצור בזמן הכשרת עובדים חדשים.</div>
       </div>
     </div>
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(249,168,37,.1);color:#c47f00">🏭</div>
+        <div class="vert-icon" style="background:rgba(245,158,11,.1);color:var(--amber)"><svg class="icon" viewBox="0 0 24 24"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
         <div class="vert-header-text">
           <h3>קו ייצור</h3>
           <div class="en-sub">Manufacturing</div>
@@ -835,8 +908,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>השבתות לא צפויות</span></li><li><span>פסולת גבוהה</span></li><li><span>תחזוקה תגובתית</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>חיזוי תקלות ML</span></li><li><span>אופטימיזציית קו בזמן אמת</span></li><li><span>בקרת איכות חזותית</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>השבתות לא צפויות</li><li>פסולת גבוהה</li><li>תחזוקה תגובתית</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>חיזוי תקלות ML</li><li>אופטימיזציית קו בזמן אמת</li><li>בקרת איכות חזותית</li></ul></div>
         </div>
         <div class="vert-outcome">צמצום השבתות, ירידה בפסולת ועלייה בתפוקה — עם מודל שמשתפר עם כל מחזור.</div>
       </div>
@@ -844,7 +917,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(244,104,60,.1);color:#d4522a">📢</div>
+        <div class="vert-icon" style="background:rgba(249,115,22,.1);color:var(--coral)"><svg class="icon" viewBox="0 0 24 24"><path d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/></svg></div>
         <div class="vert-header-text">
           <h3>מכירות ושיווק</h3>
           <div class="en-sub">Sales &amp; Marketing</div>
@@ -853,8 +926,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>לידים ללא תיעדוף</span></li><li><span>הצעות מחיר איטיות</span></li><li><span>תוכן בקצב נמוך</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>תיעדוף לידים בזמן אמת</span></li><li><span>הצעות מחיר אוטומטיות</span></li><li><span>מחולל תוכן שיווקי</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>לידים ללא תיעדוף</li><li>הצעות מחיר איטיות</li><li>תוכן בקצב נמוך</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>תיעדוף לידים בזמן אמת</li><li>הצעות מחיר אוטומטיות</li><li>מחולל תוכן שיווקי</li></ul></div>
         </div>
         <div class="vert-outcome">התמקדות בלידים החמים, מחזורי מכירה קצרים יותר ותפוקת תוכן גבוהה יותר.</div>
       </div>
@@ -862,7 +935,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(155,89,182,.1);color:#7e3ecc">📋</div>
+        <div class="vert-icon" style="background:rgba(99,102,241,.1);color:var(--purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg></div>
         <div class="vert-header-text">
           <h3>ניהול פרויקטים</h3>
           <div class="en-sub">PMO Agent</div>
@@ -871,8 +944,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>סטטוסים מפוזרים</span></li><li><span>עיכובים מתגלים מאוחר</span></li><li><span>דיווח גוזל זמן</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מעקב משימות חכם</span></li><li><span>התרעות עיכוב</span></li><li><span>דוחות אוטומטיים</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>סטטוסים מפוזרים</li><li>עיכובים מתגלים מאוחר</li><li>דיווח גוזל זמן</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>מעקב משימות חכם</li><li>התרעות עיכוב</li><li>דוחות אוטומטיים</li></ul></div>
         </div>
         <div class="vert-outcome">שקיפות מלאה על מצב הפרויקט, התראות מוקדמות ופחות זמן על איסוף סטטוסים.</div>
       </div>
@@ -880,7 +953,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(0,188,212,.1);color:#0097a7">👥</div>
+        <div class="vert-icon" style="background:rgba(6,182,212,.1);color:var(--teal-dark)"><svg class="icon" viewBox="0 0 24 24"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg></div>
         <div class="vert-header-text">
           <h3>משאבי אנוש</h3>
           <div class="en-sub">HR</div>
@@ -889,8 +962,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>כמות מועמדים גדולה</span></li><li><span>חוויית מועמד חלשה</span></li><li><span>קליטה לא אחידה</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>סינון קו"ח חכם</span></li><li><span>מענה למועמדים</span></li><li><span>עוזר קליטה</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>כמות מועמדים גדולה</li><li>חוויית מועמד חלשה</li><li>קליטה לא אחידה</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>סינון קו"ח חכם</li><li>מענה למועמדים</li><li>עוזר קליטה</li></ul></div>
         </div>
         <div class="vert-outcome">גיוס מהיר יותר, חוויית מועמד טובה יותר וקליטה אחידה שמשחררת את צוות ה-HR.</div>
       </div>
@@ -898,7 +971,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(53,187,200,.1);color:var(--teal-dark)">🎧</div>
+        <div class="vert-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><svg class="icon" viewBox="0 0 24 24"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></div>
         <div class="vert-header-text">
           <h3>שירות לקוחות</h3>
           <div class="en-sub">Support</div>
@@ -907,8 +980,8 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>עומס פניות גבוה</span></li><li><span>זמני המתנה ארוכים</span></li><li><span>שאלות חוזרות</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>מענה אוטומטי</span></li><li><span>סיווג וניתוב חכם</span></li><li><span>תשובות מוצעות לנציג</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>עומס פניות גבוה</li><li>זמני המתנה ארוכים</li><li>שאלות חוזרות</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>מענה אוטומטי</li><li>סיווג וניתוב חכם</li><li>תשובות מוצעות לנציג</li></ul></div>
         </div>
         <div class="vert-outcome">קיצור זמני מענה, ירידה בעומס על הצוות ופניות מורכבות שמגיעות מהר לאדם הנכון.</div>
       </div>
@@ -916,7 +989,7 @@
 
     <div class="vertical-card reveal">
       <div class="vertical-header" onclick="toggleVert(this)">
-        <div class="vert-icon" style="background:rgba(0,196,154,.1);color:#00956e">🏢</div>
+        <div class="vert-icon" style="background:rgba(99,102,241,.1);color:var(--purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg></div>
         <div class="vert-header-text">
           <h3>חוצה-ארגון</h3>
           <div class="en-sub">Enterprise-Wide</div>
@@ -925,33 +998,32 @@
       </div>
       <div class="vert-collapsible">
         <div class="vert-body">
-          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li><span>ידע מפוזר</span></li><li><span>חיפוש איטי</span></li><li><span>אובדן ידע ארגוני</span></li></ul></div>
-          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li><span>סוכן עוזר ידע ארגוני</span></li><li><span>חיפוש סמנטי</span></li><li><span>תיעוד אוטומטי</span></li></ul></div>
+          <div class="vert-col challenges"><h4>האתגרים</h4><ul><li>ידע מפוזר</li><li>חיפוש איטי</li><li>אובדן ידע ארגוני</li></ul></div>
+          <div class="vert-col solutions"><h4>הפתרונות</h4><ul><li>סוכן עוזר ידע ארגוני</li><li>חיפוש סמנטי</li><li>תיעוד אוטומטי</li></ul></div>
         </div>
         <div class="vert-outcome">גישה מהירה לידע לכל עובד, קבלת החלטות מהירה יותר ושימור ידע ארגוני.</div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ─── CONTACT ─── -->
-<section class="contact" id="contact">
+<section class="contact dark-section" id="contact">
   <div class="contact-wrap">
     <div class="contact-info">
-      <span class="section-tag">צרו קשר</span>
+      <span class="section-eyebrow">צרו קשר</span>
       <h2 class="section-title">נדבר על<br/>הארגון שלכם</h2>
       <p>המומחים שלנו ישמחו לאבחן את הנקודות שבהן תוכלו להשיג ערך מהיר — ללא התחייבות.</p>
       <div class="contact-detail">
-        <div class="icon">📧</div>
+        <div class="icon icon-wrap"><svg class="icon" viewBox="0 0 24 24" style="color:var(--teal-light)"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
         <div><a href="mailto:info@moore-mc.com">info@moore-mc.com</a></div>
       </div>
       <div class="contact-detail">
-        <div class="icon">🌐</div>
+        <div class="icon icon-wrap"><svg class="icon" viewBox="0 0 24 24" style="color:var(--teal-light)"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg></div>
         <div><a href="https://www.moore-mc.com" target="_blank">www.moore-mc.com</a></div>
       </div>
       <div class="contact-detail">
-        <div class="icon">💼</div>
+        <div class="icon icon-wrap"><svg class="icon" viewBox="0 0 24 24" style="color:var(--teal-light)"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/></svg></div>
         <div><span>Moore Management Consulting</span></div>
       </div>
     </div>
@@ -984,18 +1056,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="nav-logo" style="margin-bottom:0">
-        <svg class="nav-logo-svg" width="52" height="42" viewBox="0 0 52 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="0,42 13,42 26,2" fill="#35BBC8"/>
-          <polygon points="13,42 26,2 19.5,42" fill="rgba(255,255,255,0.15)"/>
-          <polygon points="26,2 39,42 52,42" fill="#35BBC8"/>
-          <polygon points="26,2 32.5,42 39,42" fill="rgba(255,255,255,0.15)"/>
-        </svg>
-        <div class="nav-logo-text">
-          <span style="color:#fff">MOORE</span>
-          <span>CONSULTING · TECHNOLOGY</span>
-        </div>
-      </div>
+      <img src="moore_logo.png" alt="Moore Consulting Technology" />
       <p>פתרונות טכנולוגיים מבוססי AI לייעול תהליכים, אוטומציה וחדשנות ארגונית — מאבחון ועד הטמעה.</p>
     </div>
     <div class="footer-col">
@@ -1035,24 +1096,27 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Moore Management Consulting. All rights reserved.</span>
-    <span>סל פתרונות טכנולוגיים · AI · Automation · Innovation</span>
+    <span>AI · Automation · Innovation</span>
   </div>
 </footer>
 
 <script>
-  // Vertical cards toggle (independent — multiple can be open)
-  function toggleVert(header) {
-    header.closest('.vertical-card').classList.toggle('open');
-  }
+  // Nav scroll shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
+  });
 
-  // Accordion
+  // Solutions accordion
   function toggleSol(header) {
     const item = header.closest('.sol-item');
     const isOpen = item.classList.contains('open');
-    // Close all
     document.querySelectorAll('.sol-item.open').forEach(i => i.classList.remove('open'));
-    // Open clicked (unless it was already open)
     if (!isOpen) item.classList.add('open');
+  }
+
+  // Vertical cards toggle
+  function toggleVert(header) {
+    header.closest('.vertical-card').classList.toggle('open');
   }
 
   // Scroll reveal
@@ -1062,21 +1126,22 @@
   );
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Nav highlight
+  // Nav active link
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
     navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--teal)' : '';
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
+      a.style.fontWeight = a.getAttribute('href') === `#${current}` ? '600' : '';
     });
   });
 
-  // Form submit feedback
+  // Form feedback
   document.querySelector('.contact-form button').addEventListener('click', function() {
     this.textContent = '✓ ההודעה נשלחה!';
-    this.style.background = 'var(--accent2)';
+    this.style.background = 'var(--green)';
     setTimeout(() => {
       this.textContent = 'שלחו הודעה ←';
       this.style.background = '';
